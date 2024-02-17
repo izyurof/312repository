@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Пользоаватели</title>
+    <h3>
+        <p style="margin-left: 270px;">Список пользователей</p>
+    </h3>
+
+    <head>
+        <meta charset="UTF-8"/>
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 40%;
+            }
+
+            th, td {
+                border: 2px solid black;
+                padding: 3px;
+                text-align: left;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+        </style>
+    </head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>№</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Возраст</th>
+        <th>Образование</th>
+        <th>Опции</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${allUsers}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.lastName}"></td>
+        <td th:text="${user.age}"></td>
+        <td th:text="${user.education}"></td>
+        <td>
+            <a th:href="@{'/users/updateuser?id=' + ${user.id}}" class="btn btn-primary">Обновить</a>
+            <a th:href="@{'/users/deleteuser?id=' + ${user.id}}" class="btn btn-primary">Удалить</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<p style="margin-left: 550px;">
+    <a th:href="@{/users/adding}">
+        <input type="submit" value="Добавить пользователя"/>
+    </a>
+</p>
+</body>
+</html>
